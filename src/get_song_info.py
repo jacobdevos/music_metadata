@@ -26,13 +26,18 @@ class MusicInfo:
         dir_dict = {}
         for dir_name, sub_dir_list, file_list in os.walk(root_dir):
             for file in file_list:
-                fully_qualified_file_path = os.path.join(dir_name, file)
                 try:
+                    fully_qualified_file_path = os.path.join(dir_name, file)
                     artist, album, title, trackno = self.get_song_info_from_file(fully_qualified_file_path)
                     self.add_entry(dir_dict, artist, album, title, trackno, fully_qualified_file_path)
-                except Exception as e:
+                except (Exception, LookupError) as e:
                     if file.endswith(".mp3"):
-                        print(e)
+                        print("Exception {} for file {}".format(e, file))
+                        if 'FAILED' in dir_dict:
+                            dir_dict['FAILED'].append(fully_qualified_file_path)
+                        else:
+                            dir_dict['FAILED'] = [fully_qualified_file_path]
+
         return dir_dict
 
     def add_entry(self, input_dict, artist, album, title, trackno, file_path):
