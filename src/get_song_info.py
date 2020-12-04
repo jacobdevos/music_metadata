@@ -113,12 +113,6 @@ args = parser.parse_args()
 # Create a MusicInfo() object
 info = MusicInfo()
 
-# do a little cleanup, make sure if a directory was submitted it doesn't end with whatever the os separator is
-# (os.path.sep). In windows this is \, in linux this is /, that's why python has 'os.path.sep' so that it can find
-# out the separator based on the runtime environment
-if args.path.endswith(os.path.sep):
-    args.path = args.path[:-1]
-
 # if the input path is a directory, run the directory method
 if os.path.isdir(args.path):
     # store the output from get_song_info into memory (RAM).
