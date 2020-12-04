@@ -1,0 +1,33 @@
+This requires python to execute: https://www.python.org/downloads/
+
+Also git: https://git-scm.com/download/win
+
+I suggest using an IDE, my fav is PyCharm: https://git-scm.com/download/win
+
+To run the program: C:\Users\skool\PycharmProjects\music_metadata\src>python get_song_info.py -p /path/to/song/or/directory -o /path/to/outputfile
+
+-o is optional, it will write to standard output if you do not specify -o path
+-p is required, it can be a directory full of music (with subdirectories of music) or the path to a single song. 
+
+Example output:
+```
+(venv) C:\Users\skool\PycharmProjects\musicbrainz\src>python get_song_info.py -p D:\Music\Tool\Lateralus
+{
+    "Tool": {
+        "Lateralus": {
+            "1": [
+                "The Grudge",
+                "D:\\Music\\Tool\\Lateralus\\01 The Grudge.mp3"
+            ],
+            "2": [
+                "Eon Blue Apocalypse",
+                "D:\\Music\\Tool\\Lateralus\\02 Eon Blue Apocalypse.mp3"
+            ],
+
+```
+
+or 
+```
+(venv) C:\Users\skool\PycharmProjects\musicbrainz\src>python get_song_info.py -p "D:\Music\Tool\Lateralus\13 Faaip De Oiad.mp3"
+'Faaip De Oiad' by Tool from album 'Lateralus' track #13
+```
